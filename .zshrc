@@ -136,7 +136,8 @@ alias zshconfig="nvim ~/.zshrc"
 alias ohmyzsh="nvim ~/.oh-my-zsh"
 alias dashenv='source ~/Development/dashboard/frontend/dashboard/env/bin/activate'
 alias nvimconfig="cd ~/.config/nvim/ && nvim ."
-alias journal="nvim ~/Journal/2024"
+alias v="nvim"
+alias lg="lazygit"
 
 if [ -x "$(command -v lsd)" ]; then
     alias ls="lsd --group-dirs first"
