@@ -23,8 +23,8 @@ return {
       -- run using tmux as the integrated terminal doesn't work well
       dap.defaults.fallback.force_external_terminal = true
       dap.defaults.fallback.external_terminal = {
-        command = "tmux",
-        args = { "split-pane", "-v", "-l", "10" },
+        command = "wezterm",
+        args = { "cli", "split-pane" },
       }
       return opts
     end,

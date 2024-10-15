@@ -102,4 +102,4 @@ wget
 xclip
 yarn
 yt-dlp
-zellij
+wezterm
