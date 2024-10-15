@@ -1,0 +1,9 @@
+.*.iml
+*.swp
+*.swo
+.bundle
+.DS_Store
+.idea
+.rbx
+node_modules
+/tags

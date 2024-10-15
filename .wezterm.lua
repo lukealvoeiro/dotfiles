@@ -2,8 +2,9 @@ local wezterm = require("wezterm")
 local config = {}
 
 config.color_scheme = "Ayu Mirage"
-config.window_background_opacity = 0.95
+config.window_background_opacity = 0.92
 config.font = wezterm.font("ZedMono Nerd Font")
+config.font_size = 16.0
 config.window_padding = {
 	left = 5,
 	right = 5,
@@ -25,7 +26,7 @@ config.keys = {
 	-- Make Option-Right equivalent to Alt-f; forward-word
 	{ key = "RightArrow", mods = "OPT", action = wezterm.action({ SendString = "\x1bf" }) },
 }
-config.macos_force_enable_shadow = true
+-- config.macos_force_enable_shadow = true
 config.window_decorations = "INTEGRATED_BUTTONS|RESIZE"
 
 return config
