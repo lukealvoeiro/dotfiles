@@ -5,6 +5,7 @@ config.color_scheme = "Ayu Mirage"
 config.window_background_opacity = 0.92
 config.font = wezterm.font("ZedMono Nerd Font")
 config.font_size = 16.0
+config.scrollback_lines = 100000
 config.window_padding = {
 	left = 5,
 	right = 5,
