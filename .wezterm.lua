@@ -17,27 +17,15 @@ config.window_frame = {
 	-- The size of the font in the tab bar.
 	-- Default to 10.0 on Windows but 12.0 on other systems
 	font_size = 13.0,
-
-	-- The overall background color of the tab bar when
-	-- the window is focused
-	active_titlebar_bg = "rgba(0,0,0,0)",
-
-	-- The overall background color of the tab bar when
-	-- the window is not focused
-	inactive_titlebar_bg = "#333333",
 }
 
-config.colors = {
-	tab_bar = {
-		-- The color of the inactive tab bar edge/divider
-		inactive_tab_edge = "#575757",
-	},
-}
 config.keys = {
 	-- Make Option-Left equivalent to Alt-b which many line editors interpret as backward-word
 	{ key = "LeftArrow", mods = "OPT", action = wezterm.action({ SendString = "\x1bb" }) },
 	-- Make Option-Right equivalent to Alt-f; forward-word
 	{ key = "RightArrow", mods = "OPT", action = wezterm.action({ SendString = "\x1bf" }) },
 }
+config.macos_force_enable_shadow = true
+config.window_decorations = "INTEGRATED_BUTTONS|RESIZE"
 
 return config
