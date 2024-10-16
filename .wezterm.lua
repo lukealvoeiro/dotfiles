@@ -63,9 +63,6 @@ config.window_padding = {
 config.macos_window_background_blur = 20
 config.window_frame = {
 	font = wezterm.font({ family = "ZedMono Nerd Font", weight = "Bold" }),
-
-	-- The size of the font in the tab bar.
-	-- Default to 10.0 on Windows but 12.0 on other systems
 	font_size = 13.0,
 }
 config.inactive_pane_hsb = {
