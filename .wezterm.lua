@@ -70,7 +70,7 @@ config.window_frame = {
 }
 config.inactive_pane_hsb = {
 	saturation = 0.95,
-	brightness = 0.6,
+	brightness = 0.4,
 }
 
 config.keys = {
