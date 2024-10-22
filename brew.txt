@@ -6,7 +6,6 @@ bazelisk
 buildozer
 certigo
 cmake
-codecrafters-io/tap/codecrafters
 convco
 dnsmasq
 docutils
@@ -63,3 +62,5 @@ xclip
 yarn
 yt-dlp
 wezterm
+ripgrep
+imagemagick

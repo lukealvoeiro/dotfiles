@@ -46,6 +46,22 @@ return {
   },
   {
     "nvim-neo-tree/neo-tree.nvim",
+    dependencies = {
+      "3rd/image.nvim",
+      dependencies = {
+        {
+          "vhyrro/luarocks.nvim",
+          priority = 1000, -- Very high priority is required, luarocks.nvim should run as the first plugin in your config.
+          config = true,
+          opts = {
+            rocks = { "magick" },
+          },
+        },
+      },
+      opts = {
+        backend = "kitty",
+      },
+    },
     keys = function()
       return {
         {
