@@ -34,6 +34,8 @@ export XDG_CONFIG_HOME="$HOME/.config"
 # killport alias
 alias killport='lsof -t -i tcp:$1 | xargs kill'
 
+export DYLD_LIBRARY_PATH="$(brew --prefix)/lib:$DYLD_LIBRARY_PATH"
+
 # Adding libexec/bin to path
 export PATH=$PATH:/opt/homebrew/opt/python@3/libexec/bin
 
