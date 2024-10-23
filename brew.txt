@@ -65,3 +65,4 @@ wezterm
 ripgrep
 imagemagick
 luarocks
+zoxide

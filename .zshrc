@@ -18,7 +18,9 @@ alias ohmyzsh="nvim ~/.oh-my-zsh"
 alias dashenv='source ~/Development/dashboard/frontend/dashboard/env/bin/activate'
 alias nvimconfig="cd ~/.config/nvim/ && nvim ."
 alias v="nvim"
-alias lg="lazygit"
+alias cd="z"
+alias gg="lazygit"
+alias killport='lsof -t -i tcp:$1 | xargs kill'
 
 if [ -x "$(command -v lsd)" ]; then
   alias ls="lsd --group-dirs first"
@@ -30,10 +32,6 @@ fi
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
 export XDG_CONFIG_HOME="$HOME/.config"
-
-# killport alias
-alias killport='lsof -t -i tcp:$1 | xargs kill'
-
 export DYLD_LIBRARY_PATH="$(brew --prefix)/lib:$DYLD_LIBRARY_PATH"
 
 # Adding libexec/bin to path
@@ -44,3 +42,5 @@ source <(fzf --zsh)
 # Load and initialise completion system
 autoload -Uz compinit
 compinit
+
+eval "$(zoxide init zsh)"
