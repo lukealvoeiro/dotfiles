@@ -3,6 +3,20 @@ return {
   dependencies = {
     { "nvim-telescope/telescope-live-grep-args.nvim", version = "^1.0.0" },
   },
+  opts = {
+    defaults = {
+      vimgrep_arguments = {
+        "rg",
+        "--hidden",
+        "--color=never",
+        "--no-heading",
+        "--with-filename",
+        "--line-number",
+        "--column",
+        "--smart-case",
+      },
+    },
+  },
   keys = function()
     local builtin = require("telescope.builtin")
     local all_file_search = function()
@@ -77,7 +91,7 @@ return {
     wk.add({
       { "<leader>sa", group = "all" },
     })
-
+    local live_grep_args_shortcuts = require("telescope-live-grep-args.shortcuts")
     return {
       { "<leader>sh", builtin.help_tags, desc = "[S]earch [H]elp" },
       { "<leader>sk", builtin.keymaps, desc = "[S]earch [K]eymaps" },
@@ -85,15 +99,24 @@ return {
       { "<leader>sf", builtin.find_files, desc = "[S]earch [F]iles" },
       { "<leader>saf", all_file_search, desc = "[S]earch [A]ll [F]iles" },
       { "<leader>st", builtin.builtin, desc = "[S]earch [T]elescope" },
-      { "<leader>sw", builtin.grep_string, desc = "[S]earch current [W]ord" },
-      { "<leader>sg", require("telescope").extensions.live_grep_args.live_grep_args, desc = "[S]earch by [G]rep" },
+      { "<leader>sw", live_grep_args_shortcuts.grep_word_under_cursor, desc = "[S]earch current [W]ord" },
+      {
+        "<leader>sg",
+        require("telescope").extensions.live_grep_args.live_grep_args,
+        desc = "[S]earch by [G]rep",
+      },
       { "<leader>sd", builtin.diagnostics, desc = "[S]earch [D]iagnostics" },
       { "<leader>ss", builtin.lsp_document_symbols, desc = "[S]earch [S]ymbols" },
       { "<leader>sl", builtin.resume, desc = "[S]earch [L]ast" },
       { "<leader>s.", builtin.oldfiles, desc = '[S]earch Recent Files ("." for repeat)' },
       { "<leader>sp", find_projects, desc = "[S]earch [P]rojects" },
       { "<leader><leader>", search_open_buffers, desc = "[ ] Find existing buffers" },
-      { "<leader>sw", LazyVim.pick("grep_string"), mode = "v", desc = "[S]earch Selection (Root Dir)" },
+      {
+        "<leader>sw",
+        live_grep_args_shortcuts.grep_visual_selection,
+        mode = "v",
+        desc = "[S]earch Selection",
+      },
       { "<leader>sv", git_status_search, desc = "[S]earch [V]CS" },
       { "<leader>sC", builtin.git_commits, desc = "[S]earch and checkout [C]ommit" },
 
