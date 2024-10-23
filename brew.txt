@@ -64,3 +64,4 @@ yt-dlp
 wezterm
 ripgrep
 imagemagick
+luarocks
