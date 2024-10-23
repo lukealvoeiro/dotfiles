@@ -1,6 +1,5 @@
 .git
 scripts
-.zshrc
 brew.txt
 backup.sh
 setup.sh
