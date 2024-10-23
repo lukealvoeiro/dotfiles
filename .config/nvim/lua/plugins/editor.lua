@@ -45,15 +45,19 @@ return {
     },
   },
   {
+    "3rd/image.nvim",
+    lazy = true,
+    dependencies = {
+      { "leafo/magick" },
+    },
+    opts = {
+      backend = "kitty",
+    },
+  },
+  {
     "nvim-neo-tree/neo-tree.nvim",
     dependencies = {
       "3rd/image.nvim",
-      dependencies = {
-        "leafo/magick",
-      },
-      opts = {
-        backend = "kitty",
-      },
     },
     keys = function()
       return {
