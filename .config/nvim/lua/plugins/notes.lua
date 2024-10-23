@@ -1,7 +1,38 @@
 return {
-  { "MeanderingProgrammer/render-markdown.nvim", enabled = false },
+  {
+    "MeanderingProgrammer/render-markdown.nvim",
+    opts = {
+      heading = {
+        sign = false,
+        icons = { "󰎤 ", "󰎧 ", "󰎪 ", "󰎭 ", "󰎱 ", "󰎳 " },
+        backgrounds = {
+          "RenderMarkdownH1Bg",
+          "RenderMarkdownH2Bg",
+          "RenderMarkdownH3Bg",
+          "RenderMarkdownH4Bg",
+          "RenderMarkdownH5Bg",
+          "RenderMarkdownH6Bg",
+        },
+        foregrounds = {
+          "RenderMarkdownH1",
+          "RenderMarkdownH2",
+          "RenderMarkdownH3",
+          "RenderMarkdownH4",
+          "RenderMarkdownH5",
+          "RenderMarkdownH6",
+        },
+      },
+      bullet = { enabled = true, icons = { "•" }, highlight = "ObsidianBullet" },
+      checkbox = {
+        enabled = true,
+        unchecked = { icon = "󰄱", highlight = "ObsidianTodo" },
+        checked = { icon = "", highlight = "ObsidianDone" },
+      },
+    },
+  },
   {
     "epwalsh/obsidian.nvim",
+    enabled = true,
     version = "*", -- recommended, use latest release instead of latest commit
     lazy = true,
     ft = "markdown",
@@ -47,7 +78,7 @@ return {
         time_format = "%H:%M",
       },
       ui = {
-        enable = true, -- set to false to disable all additional syntax features
+        enable = false, -- set to false to disable all additional syntax features
         update_debounce = 200, -- update delay after a text change (in milliseconds)
         -- Define how various check-boxes are displayed
         checkboxes = {
@@ -56,20 +87,12 @@ return {
           ["x"] = { char = "", hl_group = "ObsidianDone" },
           [">"] = { char = "", hl_group = "ObsidianRightArrow" },
           ["~"] = { char = "󰰱", hl_group = "ObsidianTilde" },
-          -- Replace the above with this if you don't have a patched font:
-          -- [" "] = { char = "☐", hl_group = "ObsidianTodo" },
-          -- ["x"] = { char = "✔", hl_group = "ObsidianDone" },
-
-          -- You can also add more custom ones...
         },
         external_link_icon = { char = "", hl_group = "ObsidianExtLinkIcon" },
-        -- Replace the above with this if you don't have a patched font:
-        -- external_link_icon = { char = "", hl_group = "ObsidianExtLinkIcon" },
         reference_text = { hl_group = "ObsidianRefText" },
         highlight_text = { hl_group = "ObsidianHighlightText" },
         tags = { hl_group = "ObsidianTag" },
         hl_groups = {
-          -- The options are passed directly to `vim.api.nvim_set_hl()`. See `:help nvim_set_hl`.
           ObsidianTodo = { bold = true, fg = "#f78c6c" },
           ObsidianDone = { bold = true, fg = "#89ddff" },
           ObsidianRightArrow = { bold = true, fg = "#f78c6c" },

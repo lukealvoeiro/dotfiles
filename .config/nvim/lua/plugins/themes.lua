@@ -16,7 +16,16 @@ return {
           local current_line_bg = "#313540"
           local neotree_sidebar_bg = "#353944"
           local neotree_line = "#54565d"
-          return {
+          local rainbow = {
+            colors.entity,
+            colors.keyword,
+            colors.string,
+            colors.regexp,
+            colors.constant,
+            colors.lsp_parameter,
+          }
+          local utils = require("custom.utils")
+          local ret = {
             LineNr = { fg = colors.special, bold = true },
             LineNrAbove = { fg = line_colors },
             LineNrBelow = { fg = line_colors },
@@ -30,7 +39,14 @@ return {
             NeoTreeCursorLine = { bg = neotree_line },
             NeoTreeNormal = { bg = neotree_sidebar_bg },
             NeoTreeNormalNC = { bg = neotree_sidebar_bg },
-            -- TODO: make anything that resembles staged be bold
+            RenderMarkdownCodeInline = {
+              bg = utils.blend_bg(neotree_sidebar_bg, 0.8, normal_bg),
+              fg = colors.fg,
+              bold = true,
+            },
+            RenderMarkdownCode = {
+              bg = utils.blend_bg(neotree_sidebar_bg, 0.8, normal_bg),
+            },
             -- TODO: fix the lualine plugin
             Normal = { bg = normal_bg },
             NeoTreeGitAdded = { link = "GitSignsStagedAdd" },
@@ -39,6 +55,12 @@ return {
             NeoTreeGitUntracked = { link = "GitSignsAdd" },
             NeoTreeGitStaged = { link = "GitSignsStagedChange" },
           }
+          for i, color in ipairs(rainbow) do
+            ret["RenderMarkdownH" .. i .. "Bg"] = { bg = utils.blend_bg(color, 0.1, normal_bg) }
+            ret["RenderMarkdownH" .. i] = { fg = color, bold = true }
+            ret["@markup.heading." .. i] = { fg = color, bold = true }
+          end
+          return ret
         end,
       })
     end,
