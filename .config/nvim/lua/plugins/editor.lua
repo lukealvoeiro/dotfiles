@@ -107,6 +107,7 @@ return {
         mappings = {
           ["<c-d>"] = { "scroll_preview", config = { direction = -15 } },
           ["<c-u>"] = { "scroll_preview", config = { direction = 15 } },
+          ["P"] = { "toggle_preview", config = { use_float = true, use_image_nvim = true } },
         },
       },
     },
