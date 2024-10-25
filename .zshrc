@@ -20,6 +20,7 @@ alias nvimconfig="cd ~/.config/nvim/ && nvim ."
 alias v="nvim"
 alias cd="z"
 alias gg="lazygit"
+alias cat="bat -p"
 alias killport='lsof -t -i tcp:$1 | xargs kill'
 
 if [ -x "$(command -v lsd)" ]; then
