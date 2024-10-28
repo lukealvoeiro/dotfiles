@@ -76,5 +76,10 @@ vim.api.nvim_set_keymap("!", "<D-v>", "<C-R>+", { noremap = true, silent = true 
 vim.api.nvim_set_keymap("t", "<D-v>", "<C-R>+", { noremap = true, silent = true })
 vim.api.nvim_set_keymap("v", "<D-v>", "<C-R>+", { noremap = true, silent = true })
 
+-- Copy to clipboard
+vim.keymap.set("n", "<leader>y", '"+y', { desc = "Copy to clipboard" })
+vim.keymap.set("n", "<leader>Y", '"+Y', { desc = "Copy to clipboard" })
+vim.keymap.set("v", "<leader>y", '"+y', { desc = "Copy to clipboard" })
+
 -- Insert new line between parens
 vim.keymap.set("i", "<M-CR>", "<CR><Esc>O")
