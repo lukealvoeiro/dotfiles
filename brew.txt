@@ -66,3 +66,4 @@ ripgrep
 imagemagick
 luarocks
 zoxide
+MonitorControl
