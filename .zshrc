@@ -45,3 +45,66 @@ autoload -Uz compinit
 compinit
 
 eval "$(zoxide init zsh)"
+
+# # >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+# __conda_setup="$('/Users/luke/miniconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+# if [ $? -eq 0 ]; then
+#     eval "$__conda_setup"
+# else
+#     if [ -f "/Users/luke/miniconda3/etc/profile.d/conda.sh" ]; then
+#         . "/Users/luke/miniconda3/etc/profile.d/conda.sh"
+#     else
+#         export PATH="/Users/luke/miniconda3/bin:$PATH"
+#     fi
+# fi
+# unset __conda_setup
+# # <<< conda initialize <<<
+# export PATH=/usr/local/anaconda3/bin:$PATH
+# export PATH=/opt/homebrew/anaconda3/bin:$PATH
+#compdef gt
+###-begin-gt-completions-###
+#
+# yargs command completion script
+#
+# Installation: gt completion >> ~/.zshrc
+#    or gt completion >> ~/.zprofile on OSX.
+#
+_gt_yargs_completions()
+{
+  local reply
+  local si=$IFS
+  IFS=$'
+' reply=($(COMP_CWORD="$((CURRENT-1))" COMP_LINE="$BUFFER" COMP_POINT="$CURSOR" gt --get-yargs-completions "${words[@]}"))
+  IFS=$si
+  _describe 'values' reply
+}
+compdef _gt_yargs_completions gt
+###-end-gt-completions-###
+
+#compdef gt
+###-begin-gt-completions-###
+#
+# yargs command completion script
+#
+# Installation: gt completion >> ~/.zshrc
+#    or gt completion >> ~/.zprofile on OSX.
+#
+_gt_yargs_completions()
+{
+  local reply
+  local si=$IFS
+  IFS=$'
+' reply=($(COMP_CWORD="$((CURRENT-1))" COMP_LINE="$BUFFER" COMP_POINT="$CURSOR" gt --get-yargs-completions "${words[@]}"))
+  IFS=$si
+  _describe 'values' reply
+}
+compdef _gt_yargs_completions gt
+###-end-gt-completions-###
+
+export TIPTAP_PRO_TOKEN=vW4wgIo0EdU8gItFtNlgz/Zbla4kHuvi/1LUNxwa9AVXThi86IEBcpGd0nfWFO8J
+export COREPACK_ENABLE_AUTO_PIN=0
+
+export NVM_DIR="$HOME/.config/nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
