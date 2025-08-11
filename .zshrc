@@ -15,10 +15,9 @@ plug "romkatv/powerlevel10k"
 
 alias zshconfig="nvim ~/.zshrc"
 alias ohmyzsh="nvim ~/.oh-my-zsh"
-alias dashenv='source ~/Development/dashboard/frontend/dashboard/env/bin/activate'
 alias nvimconfig="cd ~/.config/nvim/ && nvim ."
+alias vim='nvim --listen /tmp/nvim-server.pipe'
 alias v="nvim"
-alias cd="z"
 alias gg="lazygit"
 alias cat="bat -p"
 alias killport='lsof -t -i tcp:$1 | xargs kill'
