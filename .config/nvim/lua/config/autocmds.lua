@@ -28,12 +28,16 @@ end, {
   desc = "Toggle autoformat-on-save",
 })
 
-vim.api.nvim_create_autocmd("QuitPre", {
+vim.api.nvim_create_autocmd("WinClosed", {
   callback = function()
-    for _, buf in ipairs(vim.api.nvim_list_bufs()) do
-      if vim.bo[buf].modified and vim.bo[buf].buftype == "" and vim.fn.bufname(buf) == "" then
-        require("lazyvim.util.ui").bufremove(buf)
+    vim.schedule(function()
+      local wins = vim.api.nvim_list_wins()
+      if #wins == 1 then
+        local buf = vim.api.nvim_win_get_buf(wins[1])
+        if vim.fn.bufname(buf) == "" and not vim.bo[buf].modified and vim.bo[buf].buftype == "" then
+          vim.cmd("quit")
+        end
       end
-    end
+    end)
   end,
 })

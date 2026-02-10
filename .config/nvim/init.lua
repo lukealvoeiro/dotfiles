@@ -1,6 +1,10 @@
 -- bootstrap lazy.nvim, LazyVim and your plugins
 require("config.lazy")
 
+-- Setup directory watcher and hotreload for AI coding assistants
+require("custom.directory-watcher").setup({ path = vim.fn.getcwd() })
+require("custom.hotreload").setup()
+
 -- TODO: make tab names more intuitive
 -- TODO: DAP highlight groups are all good
 -- TODO: learn how to do all the actions i normally do within vscode github using lazygit

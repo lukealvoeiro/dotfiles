@@ -6,3 +6,12 @@
 .config/nvim/foo.*
 .config/nvim/*.log
 .config/nvim/data
+.config/raycast
+
+# Local secrets
+.zshrc.secrets
+
+# Generated credential/config caches
+.config/configstore/
+.config/firebase/
+.config/gh/hosts.yml

@@ -2,3 +2,6 @@ git:
   paging:
     colorArg: always
     pager: delta --dark --paging=never --syntax-theme base16-256 -s
+os:
+  edit: "nvr -c 'lua Snacks.lazygit.open():close()' --remote {{filename}}"
+  editAtLine: "nvr -c 'lua Snacks.lazygit.open():close()' --remote {{filename}} +{{line}}"
