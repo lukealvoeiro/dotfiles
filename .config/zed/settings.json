@@ -7,6 +7,7 @@
 // custom settings, run `zed: open default settings` from the
 // command palette (cmd-shift-p / ctrl-shift-p)
 {
+  "diff_view_style": "split",
   "ui_font_family": "Zed Sans",
   "buffer_font_family": "ZedMono Nerd Font Mono",
   "telemetry": {
@@ -22,6 +23,12 @@
     "dark": "Ayu Dark",
   },
   "agent_servers": {
+      "codex-acp": {
+         "type": "registry"
+      },
+      "claude-acp": {
+         "type": "registry"
+      },
       "Factory Droid": {
       "type": "custom",
       "command": "~/Development/3factory-mono/apps/cli/dist/darwin/arm64/droid",
