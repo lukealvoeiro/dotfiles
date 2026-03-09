@@ -1,6 +1,9 @@
 theme = "Ayu Mirage"
 cursor-style = block
 cursor-style-blink = false
+
+# Send raw interrupt signal for Ctrl+C (avoids "9;5u" being printed)
+keybind = ctrl+c=text:\x03
 shell-integration-features = no-cursor
 font-family = "ZedMono Nerd Font Mono"
 font-size = 14
