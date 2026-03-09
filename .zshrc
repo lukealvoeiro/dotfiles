@@ -124,6 +124,7 @@ alias cb='git branch --sort=-committerdate | fzf --header Checkout | xargs git c
 alias droid-dev='/Users/luke/.local/bin/droid-dev'
 alias proddroid='/Users/luke/.local/bin/droid'
 alias dotfiles='vim ~/dotfiles'
+alias sandbox-tunnel='ssh -N factory.sandbox'
 alias gsa='~/dotfiles/git-status-all.sh'
 alias find-session='~/dotfiles/find-session.sh'
 
@@ -223,3 +224,16 @@ export NVM_DIR="$HOME/.config/nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
+
+# d: Generate exact shell command from natural language; reasoning off; no execution; globbing disabled; inserts into buffer
+unalias d 2>/dev/null
+d() {
+  emulate -L zsh
+  setopt NO_GLOB
+  local query="$*"
+  local prompt="You are a command line expert. The user wants to run a command but they don't know how. Here is what they asked: ${query}. Return ONLY the exact shell command needed. Do not prepend with an explanation, no markdown, no code blocks - just return the raw command you think will solve their query."
+  local cmd
+  cmd=$(droid exec -m glm-4.7 -r off --output-format text --disabled-tools execute-cli -- "$prompt")
+  print -z -- "$cmd"
+}
+alias d='noglob d'
