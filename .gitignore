@@ -15,3 +15,6 @@
 .config/configstore/
 .config/firebase/
 .config/gh/hosts.yml
+.config/code-server/
+.config/gcloud/
+.config/zed/prompts/
