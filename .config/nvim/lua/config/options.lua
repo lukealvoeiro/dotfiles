@@ -2,6 +2,9 @@
 -- Default options that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/options.lua
 -- Add any additional options here
 
+-- Disable snacks animations
+vim.g.snacks_animate = false
+
 vim.opt.swapfile = false
 vim.opt.wrap = true
 vim.opt.showbreak = string.rep(" ", 3) -- Make it so that long lines wrap smartly

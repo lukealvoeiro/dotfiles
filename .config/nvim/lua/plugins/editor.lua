@@ -46,12 +46,11 @@ return {
   },
   {
     "3rd/image.nvim",
-    lazy = true,
-    dependencies = {
-      { "leafo/magick" },
-    },
+    -- Load for markdown/vimwiki automatically; neo-tree can still pull it in via dependency.
+    ft = { "markdown", "vimwiki" },
     opts = {
       backend = "kitty",
+      processor = "magick_cli",
       integrations = {
         markdown = {
           enabled = true,

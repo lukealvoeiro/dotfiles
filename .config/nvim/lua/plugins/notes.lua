@@ -47,8 +47,6 @@ return {
     dependencies = {
       -- Required.
       "nvim-lua/plenary.nvim",
-      "nvim-telescope/telescope.nvim",
-      "hrsh7th/nvim-cmp",
       -- see below for full list of optional dependencies 👇
     },
     cmd = {
@@ -65,7 +63,6 @@ return {
       "ObsidianLinkNew",
     },
     opts = {
-      completion = { nvim_cmp = true },
       workspaces = {
         {
           name = "luke",

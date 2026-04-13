@@ -1,15 +1,6 @@
 return {
   { "akinsho/bufferline.nvim", enabled = false },
   {
-    "lukas-reineke/indent-blankline.nvim",
-    opts = {
-      indent = {
-        char = "▏",
-      },
-      scope = { show_start = false, show_end = false, show_exact_scope = false },
-    },
-  },
-  {
     "folke/noice.nvim",
     opts = function()
       return {

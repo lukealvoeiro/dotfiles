@@ -7,3 +7,5 @@
 .rbx
 node_modules
 /tags
+
+**/.claude/settings.local.json
