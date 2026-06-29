@@ -1,6 +1,7 @@
 .git
 scripts
+shell
 brew.txt
-backup.sh
-setup.sh
 profile.jpg
+README.md
+.*\.example

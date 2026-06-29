@@ -1,0 +1,60 @@
+# Machine- and work-specific zsh configuration.
+# Copy to ~/.zshrc.local (gitignored) and adjust for the current machine.
+# Sourced near the end of ~/.zshrc.
+
+# AWS
+# export AWS_PROFILE=Developer-XXXXXXXXXXXX
+
+# Factory / droid CLI
+# alias droid="$HOME/.local/bin/droid"
+# alias droid-dev="$HOME/.local/bin/droid-dev"
+# alias proddroid="$HOME/.local/bin/droid"
+# alias sandbox-tunnel='ssh -N factory.sandbox'
+# alias facap='cd ~/Development/factory-mono/apps/factory-app'
+
+# Switch between factory-mono repo instances while preserving relative path
+# _switch_factory_repo() {
+#     local target_repo="$1"
+#     local current_path="$PWD"
+#     local relative_path=""
+#
+#     if [[ "$current_path" == *"/factory-mono"* ]]; then
+#         relative_path="${current_path#*factory-mono}"
+#     elif [[ "$current_path" == *"/2factory-mono"* ]]; then
+#         relative_path="${current_path#*2factory-mono}"
+#     elif [[ "$current_path" == *"/3factory-mono"* ]]; then
+#         relative_path="${current_path#*3factory-mono}"
+#     elif [[ "$current_path" == *"/4factory-mono"* ]]; then
+#         relative_path="${current_path#*4factory-mono}"
+#     else
+#         echo "Error: Not currently in a factory-mono repo instance"
+#         return 1
+#     fi
+#
+#     local new_path="$HOME/Development/${target_repo}${relative_path}"
+#
+#     if [[ -d "$new_path" ]]; then
+#         cd "$new_path"
+#     else
+#         echo "Error: Directory does not exist: $new_path"
+#         return 1
+#     fi
+# }
+# alias st1='_switch_factory_repo factory-mono'
+# alias st2='_switch_factory_repo 2factory-mono'
+# alias st3='_switch_factory_repo 3factory-mono'
+# alias st4='_switch_factory_repo 4factory-mono'
+
+# d: Generate exact shell command from natural language; reasoning off; no
+# execution; globbing disabled; inserts into buffer.
+# unalias d 2>/dev/null
+# d() {
+#   emulate -L zsh
+#   setopt NO_GLOB
+#   local query="$*"
+#   local prompt="You are a command line expert. The user wants to run a command but they don't know how. Here is what they asked: ${query}. Return ONLY the exact shell command needed. Do not prepend with an explanation, no markdown, no code blocks - just return the raw command you think will solve their query."
+#   local cmd
+#   cmd=$(droid exec -m glm-4.7 -r off --output-format text --disabled-tools execute-cli -- "$prompt")
+#   print -z -- "$cmd"
+# }
+# alias d='noglob d'

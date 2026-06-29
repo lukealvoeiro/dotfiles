@@ -11,6 +11,9 @@
 # Local secrets
 .zshrc.secrets
 
+# Machine- and work-specific local config
+.zshrc.local
+
 # Generated credential/config caches
 .config/configstore/
 .config/firebase/
