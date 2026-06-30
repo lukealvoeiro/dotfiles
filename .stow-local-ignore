@@ -1,6 +1,12 @@
 .git
+\.gitignore
+\.stow-local-ignore
 scripts
 brew.txt
 backup.sh
 setup.sh
+find-session.sh
+git-status-all.sh
+husky
 profile.jpg
+README.md

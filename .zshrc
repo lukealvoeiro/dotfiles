@@ -17,13 +17,12 @@ plug "zsh-users/zsh-syntax-highlighting"
 plug "romkatv/powerlevel10k"
 
 alias zshconfig="nvim ~/.zshrc"
-alias ohmyzsh="nvim ~/.oh-my-zsh"
 alias nvimconfig="cd ~/.config/nvim/ && nvim ."
 alias vim='nvim --listen /tmp/nvim-server.pipe'
 alias v="nvim"
 alias gg="lazygit"
 alias cat="bat -p"
-alias droid="/Users/luke/.local/bin/droid"
+alias droid="$HOME/.local/bin/droid"
 # Kill processes on a specific port
 killport() {
     if [ -z "$1" ]; then
@@ -139,8 +138,8 @@ git() {
     command git "$@"
   fi
 }
-alias droid-dev='/Users/luke/.local/bin/droid-dev'
-alias proddroid='/Users/luke/.local/bin/droid'
+alias droid-dev="$HOME/.local/bin/droid-dev"
+alias proddroid="$HOME/.local/bin/droid"
 alias dotfiles='vim ~/dotfiles'
 alias sandbox-tunnel='ssh -N factory.sandbox'
 alias gsa='~/dotfiles/git-status-all.sh'
@@ -156,10 +155,19 @@ fi
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
 export XDG_CONFIG_HOME="$HOME/.config"
-export DYLD_LIBRARY_PATH="$(brew --prefix)/libe$DYLD_LIBRARY_PATH"
+
+# Resolve the Homebrew prefix once instead of shelling out on every startup.
+if [[ -z "$HOMEBREW_PREFIX" ]]; then
+  if [[ -x /opt/homebrew/bin/brew ]]; then
+    export HOMEBREW_PREFIX=/opt/homebrew
+  elif [[ -x /usr/local/bin/brew ]]; then
+    export HOMEBREW_PREFIX=/usr/local
+  fi
+fi
+export DYLD_LIBRARY_PATH="$HOMEBREW_PREFIX/lib:$DYLD_LIBRARY_PATH"
 
 # Adding libexec/bin to path
-export PATH=$PATH:/opt/homebrew/opt/python@3/libexec/bin
+export PATH=$PATH:$HOMEBREW_PREFIX/opt/python@3/libexec/bin
 
 # Load local secrets (not committed)
 ZSHRC_DIR="${${(%):-%x}:A:h}"
@@ -167,7 +175,7 @@ ZSHRC_DIR="${${(%):-%x}:A:h}"
 
 
 
-export AWS_PROFILE=Developer-686782615134
+export AWS_PROFILE="${AWS_PROFILE:-Developer-686782615134}"
 
 source <(fzf --zsh)
 
@@ -176,42 +184,6 @@ autoload -Uz compinit
 compinit
 
 eval "$(zoxide init zsh)"
-
-# # >>> conda initialize >>>
-# !! Contents within this block are managed by 'conda init' !!
-# __conda_setup="$('/Users/luke/miniconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
-# if [ $? -eq 0 ]; then
-#     eval "$__conda_setup"
-# else
-#     if [ -f "/Users/luke/miniconda3/etc/profile.d/conda.sh" ]; then
-#         . "/Users/luke/miniconda3/etc/profile.d/conda.sh"
-#     else
-#         export PATH="/Users/luke/miniconda3/bin:$PATH"
-#     fi
-# fi
-# unset __conda_setup
-# # <<< conda initialize <<<
-# export PATH=/usr/local/anaconda3/bin:$PATH
-# export PATH=/opt/homebrew/anaconda3/bin:$PATH
-#compdef gt
-###-begin-gt-completions-###
-#
-# yargs command completion script
-#
-# Installation: gt completion >> ~/.zshrc
-#    or gt completion >> ~/.zprofile on OSX.
-#
-_gt_yargs_completions()
-{
-  local reply
-  local si=$IFS
-  IFS=$'
-' reply=($(COMP_CWORD="$((CURRENT-1))" COMP_LINE="$BUFFER" COMP_POINT="$CURSOR" gt --get-yargs-completions "${words[@]}"))
-  IFS=$si
-  _describe 'values' reply
-}
-compdef _gt_yargs_completions gt
-###-end-gt-completions-###
 
 #compdef gt
 ###-begin-gt-completions-###
@@ -256,9 +228,9 @@ d() {
 }
 alias d='noglob d'
 
-# bun completions
-[ -s "/Users/luke/.bun/_bun" ] && source "/Users/luke/.bun/_bun"
-
 # bun
 export BUN_INSTALL="$HOME/.bun"
+
+# bun completions
+[ -s "$BUN_INSTALL/_bun" ] && source "$BUN_INSTALL/_bun"
 export PATH="$BUN_INSTALL/bin:$PATH"

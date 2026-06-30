@@ -3,15 +3,20 @@ set -euo pipefail
 
 DOTFILES_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
-# Ghostty config lives at ~/.config/ghostty/config (XDG)
-CONFIG_LINK="$(readlink "$HOME/.config" 2>/dev/null || true)"
-if [[ "$CONFIG_LINK" == "dotfiles/.config" || "$CONFIG_LINK" == "$DOTFILES_DIR/.config" ]]; then
-  : # ~/.config already points at dotfiles; nothing to link
-else
-  mkdir -p "$HOME/.config"
-  ln -sfn "$DOTFILES_DIR/.config/ghostty" "$HOME/.config/ghostty"
+if ! command -v stow >/dev/null 2>&1; then
+  echo "GNU stow is required but not installed. Install it with: brew install stow" >&2
+  exit 1
 fi
 
+# Symlink every tracked dotfile (honoring .stow-local-ignore) into $HOME.
+stow --dir "$(dirname "$DOTFILES_DIR")" \
+     --target "$HOME" \
+     --restow \
+     "$(basename "$DOTFILES_DIR")"
+
+echo "Dotfiles symlinked into $HOME"
+
 if [[ "${1:-}" == "--brew" ]]; then
+  echo "Installing Homebrew packages from brew.txt..."
   xargs brew install <"$DOTFILES_DIR/brew.txt"
 fi
